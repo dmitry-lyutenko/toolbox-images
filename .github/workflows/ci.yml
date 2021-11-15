@@ -13,16 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag toolbox:$(date +%s)
+        run: docker build . --file Dockerfile --tag toolbox:v0.0.1
 
       - name: Login to docker hub
         run: echo $DOCKER_HUB_AUTH > ~/.docker/config.json
 
       - name: Relabel (version)
-        run: docker tag toolbox:$(date +%s) egiptyanin/toolbox:v0.0.1
+        run: docker tag toolbox:v0.0.1 egiptyanin/toolbox:v0.0.1
 
       - name: Relabel (latest)
-        run: docker tag toolbox:$(date +%s) egiptyanin/toolbox:latest
+        run: docker tag toolbox:v0.0.1 egiptyanin/toolbox:latest
 
       - name: Publish
         run: docker push egiptyanin/toolbox:latest
