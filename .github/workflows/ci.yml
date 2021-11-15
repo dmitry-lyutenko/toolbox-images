@@ -13,19 +13,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        env:
-          DOCKER_HUB_AUTH: ${{ secrets.DOCKER_HUB_AUTH }}
-        run: env
-        #  docker build . --file Dockerfile --tag toolbox:v0.0.1
-
-      - name: Login to docker hub
-        run: echo $DOCKER_HUB_AUTH | tee ~/.docker/config.json 
+        run: docker build . --file Dockerfile --tag toolbox:$GITHUB_SHA
 
       - name: Relabel (version)
-        run: docker tag toolbox:v0.0.1 egiptyanin/toolbox:v0.0.1
+        run: docker tag toolbox:$GITHUB_SHA egiptyanin/toolbox:v0.0.1
 
       - name: Relabel (latest)
-        run: docker tag toolbox:v0.0.1 egiptyanin/toolbox:latest
+        run: docker tag toolbox:$GITHUB_SHA egiptyanin/toolbox:latest
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Publish
         run: docker push egiptyanin/toolbox:latest
