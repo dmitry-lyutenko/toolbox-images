@@ -30,5 +30,8 @@ jobs:
       - name: Publish
         run: docker push egiptyanin/toolbox:latest
 
+      - name: Publish ()
+        run: docker image ls
+
       - name: Logout
         run: docker logout && echo "trash" > ~/.docker/config.json && rm -f ~/.docker/config.json
