@@ -16,7 +16,7 @@ jobs:
         run: docker build . --file Dockerfile --tag toolbox:$(date +%s)
 
       - name: Login to docker hub
-        run: echo $DOCKER_HUB_AUTH > ~/.docker/config.json && docker login -u egiptyanin
+        run: echo $DOCKER_HUB_AUTH > ~/.docker/config.json && docker login
 
       - name: Relabel (version)
         run: docker tag toolbox:$(date +%s) egiptyanin/toolbox:v0.0.1
