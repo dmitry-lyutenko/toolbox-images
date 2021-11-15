@@ -1,4 +1,4 @@
-FROM alpine:3.14.13
+FROM alpine:3.14.3
 
 RUN apk update && \
     apk add nginx bash haproxy
