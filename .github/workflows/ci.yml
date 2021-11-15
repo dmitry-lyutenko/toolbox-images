@@ -19,8 +19,9 @@ jobs:
         run: docker login -u egiptyanin -p $DOCKER_HUB_AUTH
 
       - name: Relabel
-        run: docker tag toolbox:$(date +%s) egiptyanin/toolbox:v0.0.1
-        run: docker tag toolbox:$(date +%s) egiptyanin/toolbox:latest
+          run: 
+            - docker tag toolbox:$(date +%s) egiptyanin/toolbox:v0.0.1
+            - docker tag toolbox:$(date +%s) egiptyanin/toolbox:latest
 
       - name: Publish
         run: docker push egiptyanin/toolbox:latest
