@@ -16,7 +16,7 @@ jobs:
         run: docker build . --file Dockerfile --tag toolbox:$(date +%s)
 
       - name: Login to docker hub
-        run: echo $DOCKER_HUB_AUTH | docker login -u egiptyanin --password-stdin
+        run: echo $DOCKER_HUB_AUTH > ~/.docker/config.json && docker login -u egiptyanin
 
       - name: Relabel (version)
         run: docker tag toolbox:$(date +%s) egiptyanin/toolbox:v0.0.1
@@ -28,4 +28,4 @@ jobs:
         run: docker push egiptyanin/toolbox:latest
 
       - name: Logout
-        run: docker logout
+        run: docker logout && echo "trash" > ~/.docker/config.json && rm -f ~/.docker/config.json
