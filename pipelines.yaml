@@ -2,7 +2,7 @@ resources:
   - name: myGitRepo
     type: GitRepo
     configuration:
-      gitProvider: my_github
+      gitProvider: gitIntegration
       path: dmitry-lyutenko/toolbox-images
       branches:
         include: ci-test
