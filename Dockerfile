@@ -1,6 +1,7 @@
-FROM alpine:3.14.3
+FROM dimoff.jfrog.io/toolbox-docker/alpine:3.14.3
 
-RUN apk update && \
-    apk add nginx bash haproxy
+#FROM alpine:3.14.3
+
+RUN apk --no-cache add nginx bash haproxy
 
 CMD ["bash"]
