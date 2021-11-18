@@ -14,9 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag toolbox:$GITHUB_SHA_$GITHUB_REF
+        run: docker build . --file Dockerfile --tag toolbox:$GITHUB_SHA
       - name: Listing
-        run: docker image ls
+        run: docker image ls && echo $GITHUB_REF
 
   push:
     if: ${{ github.ref_type == 'tag' }}
